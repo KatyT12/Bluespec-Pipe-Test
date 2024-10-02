@@ -1,0 +1,22 @@
+#!/usr/bin/env bluetcl
+package require Bluesim
+#Bluesim::sim load mkTestbench_bsim.so mkTestbench
+# ./mkTestbench_bsim.so -f script.sh
+
+if( $argc != 2) {
+    puts "Expecting: $argv0 <arg1> <arg2>"
+    exit 1
+}
+
+set infd [lindex $argv 0]
+set outfd [lindex $argv 1]
+
+
+Bluesim::sim load mkTestbench_bsim.so mkTestbench
+Bluesim::sim arg "IN=$infd"
+Bluesim::sim arg "OUT=$outfd"
+
+puts [Bluesim::sim ls]
+set output [Bluesim::sim ls]
+puts $output
+Bluesim::sim step 1

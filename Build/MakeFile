@@ -1,0 +1,30 @@
+
+# Directory containing the Bluespec Training distribution directory
+
+TOPDIR ?= ..
+TOPFILE   ?= $(TOPDIR)/in.c
+INCLUDE = $(TOPDIR)/include
+C_FLAGS = -Wall -I $(INCLUDE)
+
+
+
+.PHONY: help
+help:
+
+CFILE = $(DISTRO)/test.c
+EXE = $(TOPFILE)
+BUILD_DIR = $(DISTRO)/build
+
+
+build_dir:
+	mkdir  build
+
+.PHONY: compile
+compile: build_dir
+	@echo Compiling for Bluesim ...
+	gcc -o $(BUILD_DIR)/$(EXE) $(CFILE)
+
+
+.PHONY: full_clean
+full_clean:
+	rm -r -f  $(BUILD_DIR)
