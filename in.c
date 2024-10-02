@@ -31,12 +31,19 @@ char** add_to_environment(char* e1, char* e2){
 
 
 int main(){
-    pid_t pid = fork();
+    pid_t pid;
+    int pipefd[2];
+    
+   
+
+    if(pipe(pipefd) < 0) exit(1);
+
+
+    pid = fork();
     if(pid == -1){
         perror("Fork");
         exit(EXIT_FAILURE);
     }
-
     // Child
     if(pid == 0){
         // int fd = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -45,7 +52,7 @@ int main(){
 
         char inArg[20]; 
         char outArg[20];
-        sprintf(inArg, "%s=%d", ENV_FIFO_IN, 10);
+        sprintf(inArg, "%s=%d", ENV_FIFO_IN, pipefd[0]);
         sprintf(outArg, "%s=%d", ENV_FIFO_OUT, 12);
 
         char* env[] = {inArg, outArg, NULL};
@@ -56,7 +63,14 @@ int main(){
         exit(EXIT_FAILURE);
     } else {
         printf("Parent\n");
+
+        char msg1[20] = "Hello there!";
+        char msg2[20] = "Good bye!";
+        write(pipefd[1], msg1, 20);
+        write(pipefd[1], msg2, 20);
+        wait(NULL);
     }
+
 
     return 0;
 }
