@@ -12,7 +12,6 @@ import StmtFSM::*;
 (* synthesize *)
 module mkTestbench();
     Reg#(Bit#(8)) p <- mkReg(0);
-    Reg#(Bit#(8)) p2 <- mkReg(0);
     Stmt stmt = seq
         my_display(1); 
         action let a <- get_input; p <= a; endaction

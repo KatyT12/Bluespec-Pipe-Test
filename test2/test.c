@@ -8,8 +8,8 @@
 
 void my_display(unsigned char x)
 {
-  char* fd = getenv(ENV_FIFO_IN);
-  printf("Num %d, env = %d\n",x, *fd);
+  const char* fd = getenv(ENV_FIFO_IN);
+  printf("Num %d, env = %s\n",x, fd);
 }
 
 
