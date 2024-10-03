@@ -30,7 +30,7 @@ void O3_CPU::initialize_branch_predictor() {
 uint8_t O3_CPU::predict_branch(uint64_t ip)
 {
    char out = 0;
-   std::cout << ip << std::endl;
+   //std::cout << ip << std::endl;
    if(write(pred_req[1], &ip, 8) == -1){
      perror("Requesting prediction");
    }
@@ -41,6 +41,7 @@ uint8_t O3_CPU::predict_branch(uint64_t ip)
    }else{
      perror("Recieving prediction");
    }
+   return 1;
    
 }
 
@@ -49,24 +50,25 @@ template<typename T>
 void contiguous_buff(T val, unsigned char* buff, int buff_size, int start){
     int val_size = sizeof(val);
     T mask = 0xFF;
+    int index = start;
     while(val_size > 0){
-        buff[start] = val & mask; 
-        val >>= 8; val_size -= 4;
-        start++;
+        buff[index] = val & mask; 
+        val >>= 8; val_size--; index ++;
     }
 }
 
 void O3_CPU::last_branch_result(uint64_t ip, uint64_t branch_target, uint8_t taken, uint8_t branch_type)
 {
-    std::cout << ip << " " << branch_target << " " << taken << " " << branch_type << std::endl;
+    //std::cout << "Update " << ip << " " << branch_target << " " << uint64_t(taken) << " " << uint64_t(branch_type) << std::endl;
     unsigned char buff[18];
     contiguous_buff<uint64_t>(ip, buff, 18, 0);
-    contiguous_buff<uint64_t>(target, buff, 18, 8);
+    contiguous_buff<uint64_t>(branch_target, buff, 18, 8);
     buff[16] = taken + '0';
     buff[17] = branch_type + '0';
-    if(write(update_req[1], &buff, 18) == -1){
-     perror("Requesting update");
-   }
+    if(write(update_req[1], buff, 18) == -1){
+      perror("Requesting update");
+    }
+    sleep(1);
     return;
 }
 

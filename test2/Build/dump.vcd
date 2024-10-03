@@ -1,5 +1,5 @@
 $date
-	Thu Oct  3 01:40:11 2024
+	Thu Oct  3 15:48:38 2024
 $end
 $version
 	Bluespec VCD dumper 2.1
@@ -12,101 +12,53 @@ $scope module top $end
 $var reg 1 ! CLK $end
 $var reg 1 ! CLK $end
 $var reg 1 " CAN_FIRE_RL_init $end
-$var reg 1 # CAN_FIRE_RL_testfsm_action_l28c29 $end
-$var reg 1 $ CAN_FIRE_RL_testfsm_action_l31c15 $end
-$var reg 1 % CAN_FIRE_RL_testfsm_action_l35c15 $end
-$var reg 1 & CAN_FIRE_RL_testfsm_action_l36c15 $end
-$var reg 1 ' CAN_FIRE_RL_testfsm_action_l37c31 $end
-$var reg 1 ( CAN_FIRE_RL_testfsm_actionpar_run_l29c9 $end
-$var reg 1 ) CAN_FIRE_RL_testfsm_actionpar_start_l29c9 $end
-$var reg 1 * CAN_FIRE_RL_testfsm_fsm_start $end
-$var reg 1 + CAN_FIRE_RL_testfsm_idle_l27c17 $end
-$var reg 1 , CAN_FIRE_RL_testfsm_idle_l27c17_1 $end
-$var reg 1 - CAN_FIRE_RL_testfsm_par_blocks_1_restart $end
-$var reg 1 . CAN_FIRE_RL_testfsm_par_blocks_1_start_reg__dreg_update $end
-$var reg 1 / CAN_FIRE_RL_testfsm_par_blocks_1_state_every $end
-$var reg 1 0 CAN_FIRE_RL_testfsm_par_blocks_1_state_fired__dreg_update $end
-$var reg 1 1 CAN_FIRE_RL_testfsm_par_blocks_1_state_handle_abort $end
-$var reg 1 2 CAN_FIRE_RL_testfsm_par_blocks_restart $end
-$var reg 1 3 CAN_FIRE_RL_testfsm_par_blocks_start_reg__dreg_update $end
-$var reg 1 4 CAN_FIRE_RL_testfsm_par_blocks_state_every $end
-$var reg 1 5 CAN_FIRE_RL_testfsm_par_blocks_state_fired__dreg_update $end
-$var reg 1 6 CAN_FIRE_RL_testfsm_par_blocks_state_handle_abort $end
-$var reg 1 7 CAN_FIRE_RL_testfsm_restart $end
-$var reg 1 8 CAN_FIRE_RL_testfsm_start_reg__dreg_update $end
-$var reg 1 9 CAN_FIRE_RL_testfsm_state_every $end
-$var reg 1 : CAN_FIRE_RL_testfsm_state_fired__dreg_update $end
-$var reg 1 ; CAN_FIRE_RL_testfsm_state_handle_abort $end
-$var reg 1 < CAN_FIRE___me_check_15 $end
-$var reg 1 = CAN_FIRE___me_check_16 $end
-$var reg 1 > CAN_FIRE___me_check_17 $end
-$var reg 1 ? RST_N $end
-$var reg 144 @ TASK_branch_update_req___d144 $end
-$var reg 1 A WILL_FIRE_RL_init $end
-$var reg 1 B WILL_FIRE_RL_testfsm_action_l28c29 $end
-$var reg 1 C WILL_FIRE_RL_testfsm_action_l31c15 $end
-$var reg 1 D WILL_FIRE_RL_testfsm_action_l35c15 $end
-$var reg 1 E WILL_FIRE_RL_testfsm_action_l36c15 $end
-$var reg 1 F WILL_FIRE_RL_testfsm_action_l37c31 $end
-$var reg 1 G WILL_FIRE_RL_testfsm_actionpar_run_l29c9 $end
-$var reg 1 H WILL_FIRE_RL_testfsm_actionpar_start_l29c9 $end
-$var reg 1 I WILL_FIRE_RL_testfsm_fsm_start $end
-$var reg 1 J WILL_FIRE_RL_testfsm_idle_l27c17 $end
-$var reg 1 K WILL_FIRE_RL_testfsm_idle_l27c17_1 $end
-$var reg 1 L WILL_FIRE_RL_testfsm_par_blocks_1_restart $end
-$var reg 1 M WILL_FIRE_RL_testfsm_par_blocks_1_start_reg__dreg_update $end
-$var reg 1 N WILL_FIRE_RL_testfsm_par_blocks_1_state_every $end
-$var reg 1 O WILL_FIRE_RL_testfsm_par_blocks_1_state_fired__dreg_update $end
-$var reg 1 P WILL_FIRE_RL_testfsm_par_blocks_1_state_handle_abort $end
-$var reg 1 Q WILL_FIRE_RL_testfsm_par_blocks_restart $end
-$var reg 1 R WILL_FIRE_RL_testfsm_par_blocks_start_reg__dreg_update $end
-$var reg 1 S WILL_FIRE_RL_testfsm_par_blocks_state_every $end
-$var reg 1 T WILL_FIRE_RL_testfsm_par_blocks_state_fired__dreg_update $end
-$var reg 1 U WILL_FIRE_RL_testfsm_par_blocks_state_handle_abort $end
-$var reg 1 V WILL_FIRE_RL_testfsm_restart $end
-$var reg 1 W WILL_FIRE_RL_testfsm_start_reg__dreg_update $end
-$var reg 1 X WILL_FIRE_RL_testfsm_state_every $end
-$var reg 1 Y WILL_FIRE_RL_testfsm_state_fired__dreg_update $end
-$var reg 1 Z WILL_FIRE_RL_testfsm_state_handle_abort $end
-$var reg 1 [ WILL_FIRE___me_check_15 $end
-$var reg 1 \ WILL_FIRE___me_check_16 $end
-$var reg 1 ] WILL_FIRE___me_check_17 $end
-$var reg 64 ^ v__h30869 $end
-$var reg 64 "$ branch $end
-$var reg 8 "% prediction $end
-$var reg 1 "& testfsm_abort $end
-$var reg 1 "' testfsm_par_blocks_1_abort $end
-$var reg 1 "( testfsm_par_blocks_1_start_reg $end
-$var reg 1 ") testfsm_par_blocks_1_start_reg_1 $end
-$var reg 1 "* testfsm_par_blocks_1_start_wire $end
-$var reg 1 "+ testfsm_par_blocks_1_state_can_overlap $end
-$var reg 1 ", testfsm_par_blocks_1_state_fired $end
-$var reg 1 "- testfsm_par_blocks_1_state_fired_1 $end
-$var reg 3 ". testfsm_par_blocks_1_state_mkFSMstate $end
-$var reg 1 "/ testfsm_par_blocks_1_state_overlap_pw $end
-$var reg 1 "0 testfsm_par_blocks_1_state_set_pw $end
-$var reg 1 "1 testfsm_par_blocks_abort $end
-$var reg 1 "2 testfsm_par_blocks_start_reg $end
-$var reg 1 "3 testfsm_par_blocks_start_reg_1 $end
-$var reg 1 "4 testfsm_par_blocks_start_wire $end
-$var reg 1 "5 testfsm_par_blocks_state_can_overlap $end
-$var reg 1 "6 testfsm_par_blocks_state_fired $end
-$var reg 1 "7 testfsm_par_blocks_state_fired_1 $end
-$var reg 2 "8 testfsm_par_blocks_state_mkFSMstate $end
-$var reg 1 "9 testfsm_par_blocks_state_overlap_pw $end
-$var reg 1 ": testfsm_par_blocks_state_set_pw $end
-$var reg 1 "; testfsm_par_running $end
-$var reg 1 "< testfsm_start_reg $end
-$var reg 1 "= testfsm_start_reg_1 $end
-$var reg 1 "> testfsm_start_reg_2 $end
-$var reg 1 "? testfsm_start_wire $end
-$var reg 1 "@ testfsm_state_can_overlap $end
-$var reg 1 "A testfsm_state_fired $end
-$var reg 1 "B testfsm_state_fired_1 $end
-$var reg 3 "C testfsm_state_mkFSMstate $end
-$var reg 1 "D testfsm_state_overlap_pw $end
-$var reg 1 "E testfsm_state_set_pw $end
-$var reg 144 "F update $end
+$var reg 1 # CAN_FIRE_RL_testfsm_action_l44c29 $end
+$var reg 1 $ CAN_FIRE_RL_testfsm_action_l47c33 $end
+$var reg 1 % CAN_FIRE_RL_testfsm_action_l48c15 $end
+$var reg 1 & CAN_FIRE_RL_testfsm_action_l49c15 $end
+$var reg 1 ' CAN_FIRE_RL_testfsm_action_l50c31 $end
+$var reg 1 ( CAN_FIRE_RL_testfsm_fsm_start $end
+$var reg 1 ) CAN_FIRE_RL_testfsm_restart $end
+$var reg 1 * CAN_FIRE_RL_testfsm_start_reg__dreg_update $end
+$var reg 1 + CAN_FIRE_RL_testfsm_state_every $end
+$var reg 1 , CAN_FIRE_RL_testfsm_state_fired__dreg_update $end
+$var reg 1 - CAN_FIRE_RL_testfsm_state_handle_abort $end
+$var reg 1 . CAN_FIRE___me_check_5 $end
+$var reg 1 / CAN_FIRE___me_check_6 $end
+$var reg 1 0 CAN_FIRE___me_check_7 $end
+$var reg 1 1 CAN_FIRE___me_check_8 $end
+$var reg 1 2 RST_N $end
+$var reg 1 3 WILL_FIRE_RL_init $end
+$var reg 1 4 WILL_FIRE_RL_testfsm_action_l44c29 $end
+$var reg 1 5 WILL_FIRE_RL_testfsm_action_l47c33 $end
+$var reg 1 6 WILL_FIRE_RL_testfsm_action_l48c15 $end
+$var reg 1 7 WILL_FIRE_RL_testfsm_action_l49c15 $end
+$var reg 1 8 WILL_FIRE_RL_testfsm_action_l50c31 $end
+$var reg 1 9 WILL_FIRE_RL_testfsm_fsm_start $end
+$var reg 1 : WILL_FIRE_RL_testfsm_restart $end
+$var reg 1 ; WILL_FIRE_RL_testfsm_start_reg__dreg_update $end
+$var reg 1 < WILL_FIRE_RL_testfsm_state_every $end
+$var reg 1 = WILL_FIRE_RL_testfsm_state_fired__dreg_update $end
+$var reg 1 > WILL_FIRE_RL_testfsm_state_handle_abort $end
+$var reg 1 ? WILL_FIRE___me_check_5 $end
+$var reg 1 @ WILL_FIRE___me_check_6 $end
+$var reg 1 A WILL_FIRE___me_check_7 $end
+$var reg 1 B WILL_FIRE___me_check_8 $end
+$var reg 64 C b__h13412 $end
+$var reg 64 R branch $end
+$var reg 8 S prediction $end
+$var reg 1 T testfsm_abort $end
+$var reg 1 U testfsm_start_reg $end
+$var reg 1 V testfsm_start_reg_1 $end
+$var reg 1 W testfsm_start_reg_2 $end
+$var reg 1 X testfsm_start_wire $end
+$var reg 1 Y testfsm_state_can_overlap $end
+$var reg 1 Z testfsm_state_fired $end
+$var reg 1 [ testfsm_state_fired_1 $end
+$var reg 3 \ testfsm_state_mkFSMstate $end
+$var reg 1 ] testfsm_state_overlap_pw $end
+$var reg 1 ^ testfsm_state_set_pw $end
+$var reg 160 _ update $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -114,107 +66,54 @@ $enddefinitions $end
 0"
 0#
 0$
-0%
+1%
 0&
-1'
-1(
+0'
+0(
 0)
-0*
-0+
-0,
+1*
+1+
+1,
 0-
 1.
 1/
 10
-01
+11
 02
-13
-14
-15
-06
+03
+04
+05
+16
 07
-18
-19
-1:
-0;
+08
+09
+0:
+1;
 1<
 1=
-1>
-0?
-b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 @
-0A
-0B
-0C
-0D
-0E
-1F
-1G
-0H
-0I
-0J
-0K
-0L
-1M
-1N
-1O
-0P
-0Q
-1R
-1S
-1T
+0>
+1?
+1@
+1A
+1B
+b1010101010101010101010101010101010101010101010101010101010101010 C
+b0 R
+b0 S
+xT
 0U
 0V
-1W
-1X
+xW
+xX
 1Y
 0Z
 1[
-1\
-1]
-b1010101010101010101010101010101010101010101010101010101010101010 ^
-b0 "$
-b0 "%
-x"&
-x"'
-0"(
-x")
-x"*
-1"+
-0",
-1"-
-b0 ".
-0"/
-1"0
-x"1
-0"2
-x"3
-x"4
-1"5
-0"6
-x"7
-b0 "8
-0"9
-0":
-1";
-0"<
-0"=
-x">
-x"?
-1"@
-0"A
-1"B
-b0 "C
-0"D
-1"E
-b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 "F
+b0 \
+0]
+1^
+b0 _
 1"
-0'
-0(
-1A
-0F
-0G
-x"-
-0"0
-x";
-x"B
-0"E
+0%
+13
+06
+x[
+0^
