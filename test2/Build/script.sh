@@ -9,7 +9,9 @@ package require Bluesim
 
 
 Bluesim::sim load /home/katy/C++/pipe/test2/Build/mkTestbench_bsim.so mkTestbench
-#Bluesim::sim arg "IN=$infd"
+#Bluesim::sim arg "DEBUG"
+
+
 #Bluesim::sim arg "OUT=$outfd"
 
 #puts [Bluesim::sim ls]

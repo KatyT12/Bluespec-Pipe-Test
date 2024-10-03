@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include "types.h"
 
-
 int pipe_read;
 int pipe_write;
 int update_read;
@@ -64,7 +63,7 @@ void branch_update_req(unsigned int* res, unsigned char* buff){
 void recieve(unsigned int* res){
   unsigned char buff[MSG_LENGTH];
   int num = 0;
-  sleep(1);
+  //sleep(1);
   if((num = read(pipe_read, buff, MSG_LENGTH)) > 0){
     if(buff[0] == PREDICT_REQ){
       res[0] = PREDICT_REQ;  

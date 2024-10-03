@@ -65,19 +65,20 @@ module mkTestbench();
     Reg#(BranchUpdateInfo) update <- mkReg(?);
     Reg#(Bit#(8)) prediction <- mkReg(0);
     Reg#(Message) message <- mkReg(?);
-    Reg#(Bool) pred <- mkReg(?);
+    Reg#(Bool) debug <- mkReg(?);
     Stmt stmt = seq 
         set_file_descriptors;
+        action let a <- $test$plusargs("DEBUG"); debug <= a; endaction
             while(True) seq
               action let a <- recieve; message <= convertToMessage(a); endaction
               if (isPred(message)) seq
                 action prediction <= predict(message.PredictReq); endaction
-                debugPredictionReq(message.PredictReq);
+                if(debug) debugPredictionReq(message.PredictReq);
                 branch_pred_resp(prediction);  
               endseq
               if (!isPred(message)) seq
                 action update <= message.UpdateReq; endaction
-                debugUpdate(update);
+                if(debug )debugUpdate(update);
               endseq
             endseq
             /*while(True) seq
