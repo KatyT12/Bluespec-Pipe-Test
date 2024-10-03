@@ -1,24 +1,43 @@
-
-import "BDPI" function Bit#(8) my_and (Bit#(8) x, Bit#(8) y);
-
-import "BDPI" function Bit#(8) my_C_or (Bit#(8) x, Bit#(8) y);
-
-import "BDPI" function Action my_display (Bit#(8) x);
-
-import "BDPI" function ActionValue#(Bit#(8)) get_input;
-
 import StmtFSM::*;
+
+import "BDPI" function ActionValue#(Bit#(64)) branch_pred_req;
+import "BDPI" function Action branch_pred_resp(Bit#(8) taken);
+import "BDPI" function ActionValue#(BranchUpdateInfo) branch_update_req();
+import "BDPI" function Action set_file_descriptors;
+import "BDPI" function Action debug;
+
+typedef struct {
+    Bit#(64) ip;
+    Bit#(64) target;
+    Bit#(8) taken;
+    Bit#(8) branch_type;
+} BranchUpdateInfo deriving(Bits, Eq, FShow);
+
 
 (* synthesize *)
 module mkTestbench();
-    Reg#(Bit#(8)) p <- mkReg(0);
-    Stmt stmt = seq
-        my_display(1); 
-        action let a <- get_input; p <= a; endaction
-        //action let b = $IN; endaction
-        action my_display(p); endaction
+
+    function Bit#(8) predict(Bit#(64) ip);
+      return 8'd1;
+    endfunction
+
+    Reg#(Bit#(64)) branch <- mkReg(0);
+    Reg#(Bit#(8)) prediction <- mkReg(0);
+    Reg#(BranchUpdateInfo) update <- mkReg(?);
+    Stmt stmt = seq 
+        set_file_descriptors;
+        par
+            while(True) seq
+              action let a <- branch_pred_req; branch <= a; endaction
+              action prediction <= predict(branch); endaction
+              branch_pred_resp(prediction);
+            endseq
+
+            while(True) seq
+              action let a <- branch_update_req; update <= a; endaction  
+            endseq
+        endpar
         //my_display(b);
-      $finish();
     endseq;
 
 FSM testfsm <- mkFSM(stmt);
@@ -26,6 +45,5 @@ FSM testfsm <- mkFSM(stmt);
 rule init;
    testfsm.start;
 endrule
-
 
 endmodule

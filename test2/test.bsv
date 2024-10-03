@@ -3,7 +3,6 @@ import "BDPI" function Bit#(8) my_and (Bit#(8) x, Bit#(8) y);
 
 import "BDPI" function Bit#(8) my_C_or (Bit#(8) x, Bit#(8) y);
 
-import "BDPI" function Action my_display (Bit#(8) x);
 
 import "BDPI" function ActionValue#(Bit#(8)) get_input;
 
