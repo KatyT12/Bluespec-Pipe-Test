@@ -1,5 +1,5 @@
 $date
-	Thu Oct  3 15:48:38 2024
+	Thu Oct  3 17:38:50 2024
 $end
 $version
 	Bluespec VCD dumper 2.1
@@ -12,53 +12,70 @@ $scope module top $end
 $var reg 1 ! CLK $end
 $var reg 1 ! CLK $end
 $var reg 1 " CAN_FIRE_RL_init $end
-$var reg 1 # CAN_FIRE_RL_testfsm_action_l44c29 $end
-$var reg 1 $ CAN_FIRE_RL_testfsm_action_l47c33 $end
-$var reg 1 % CAN_FIRE_RL_testfsm_action_l48c15 $end
-$var reg 1 & CAN_FIRE_RL_testfsm_action_l49c15 $end
-$var reg 1 ' CAN_FIRE_RL_testfsm_action_l50c31 $end
-$var reg 1 ( CAN_FIRE_RL_testfsm_fsm_start $end
-$var reg 1 ) CAN_FIRE_RL_testfsm_restart $end
-$var reg 1 * CAN_FIRE_RL_testfsm_start_reg__dreg_update $end
-$var reg 1 + CAN_FIRE_RL_testfsm_state_every $end
-$var reg 1 , CAN_FIRE_RL_testfsm_state_fired__dreg_update $end
-$var reg 1 - CAN_FIRE_RL_testfsm_state_handle_abort $end
-$var reg 1 . CAN_FIRE___me_check_5 $end
-$var reg 1 / CAN_FIRE___me_check_6 $end
-$var reg 1 0 CAN_FIRE___me_check_7 $end
-$var reg 1 1 CAN_FIRE___me_check_8 $end
-$var reg 1 2 RST_N $end
-$var reg 1 3 WILL_FIRE_RL_init $end
-$var reg 1 4 WILL_FIRE_RL_testfsm_action_l44c29 $end
-$var reg 1 5 WILL_FIRE_RL_testfsm_action_l47c33 $end
-$var reg 1 6 WILL_FIRE_RL_testfsm_action_l48c15 $end
-$var reg 1 7 WILL_FIRE_RL_testfsm_action_l49c15 $end
-$var reg 1 8 WILL_FIRE_RL_testfsm_action_l50c31 $end
-$var reg 1 9 WILL_FIRE_RL_testfsm_fsm_start $end
-$var reg 1 : WILL_FIRE_RL_testfsm_restart $end
-$var reg 1 ; WILL_FIRE_RL_testfsm_start_reg__dreg_update $end
-$var reg 1 < WILL_FIRE_RL_testfsm_state_every $end
-$var reg 1 = WILL_FIRE_RL_testfsm_state_fired__dreg_update $end
-$var reg 1 > WILL_FIRE_RL_testfsm_state_handle_abort $end
-$var reg 1 ? WILL_FIRE___me_check_5 $end
-$var reg 1 @ WILL_FIRE___me_check_6 $end
-$var reg 1 A WILL_FIRE___me_check_7 $end
-$var reg 1 B WILL_FIRE___me_check_8 $end
-$var reg 64 C b__h13412 $end
-$var reg 64 R branch $end
-$var reg 8 S prediction $end
-$var reg 1 T testfsm_abort $end
-$var reg 1 U testfsm_start_reg $end
-$var reg 1 V testfsm_start_reg_1 $end
-$var reg 1 W testfsm_start_reg_2 $end
-$var reg 1 X testfsm_start_wire $end
-$var reg 1 Y testfsm_state_can_overlap $end
-$var reg 1 Z testfsm_state_fired $end
-$var reg 1 [ testfsm_state_fired_1 $end
-$var reg 3 \ testfsm_state_mkFSMstate $end
-$var reg 1 ] testfsm_state_overlap_pw $end
-$var reg 1 ^ testfsm_state_set_pw $end
-$var reg 160 _ update $end
+$var reg 1 # CAN_FIRE_RL_testfsm_action_l70c29 $end
+$var reg 1 $ CAN_FIRE_RL_testfsm_action_l72c15 $end
+$var reg 1 % CAN_FIRE_RL_testfsm_action_l74c17 $end
+$var reg 1 & CAN_FIRE_RL_testfsm_action_l75c35 $end
+$var reg 1 ' CAN_FIRE_RL_testfsm_action_l76c33 $end
+$var reg 1 ( CAN_FIRE_RL_testfsm_action_l79c17 $end
+$var reg 1 ) CAN_FIRE_RL_testfsm_action_l80c28 $end
+$var reg 1 * CAN_FIRE_RL_testfsm_fsm_start $end
+$var reg 1 + CAN_FIRE_RL_testfsm_restart $end
+$var reg 1 , CAN_FIRE_RL_testfsm_start_reg__dreg_update $end
+$var reg 1 - CAN_FIRE_RL_testfsm_state_every $end
+$var reg 1 . CAN_FIRE_RL_testfsm_state_fired__dreg_update $end
+$var reg 1 / CAN_FIRE_RL_testfsm_state_handle_abort $end
+$var reg 1 0 CAN_FIRE___me_check_10 $end
+$var reg 1 1 CAN_FIRE___me_check_5 $end
+$var reg 1 2 CAN_FIRE___me_check_6 $end
+$var reg 1 3 CAN_FIRE___me_check_7 $end
+$var reg 1 4 CAN_FIRE___me_check_8 $end
+$var reg 1 5 CAN_FIRE___me_check_9 $end
+$var reg 144 6 IF_TASK_recieve_8_BITS_1_TO_0_9_EQ_1_0_THEN_TA_ETC___d58 $end
+$var reg 1 7 RST_N $end
+$var reg 72 8 TASK_recieve_8_BITS_129_TO_66_3_CONCAT_TASK_re_ETC___d55 $end
+$var reg 144 9 TASK_recieve_8_BITS_145_TO_2___d51 $end
+$var reg 145 : TASK_recieve_8_BITS_1_TO_0_9_EQ_1_0_CONCAT_IF__ETC___d59 $end
+$var reg 144 ; TASK_recieve_8_BITS_65_TO_2_2_CONCAT_TASK_reci_ETC___d57 $end
+$var reg 160 < TASK_recieve___d48 $end
+$var reg 1 = WILL_FIRE_RL_init $end
+$var reg 1 > WILL_FIRE_RL_testfsm_action_l70c29 $end
+$var reg 1 ? WILL_FIRE_RL_testfsm_action_l72c15 $end
+$var reg 1 @ WILL_FIRE_RL_testfsm_action_l74c17 $end
+$var reg 1 A WILL_FIRE_RL_testfsm_action_l75c35 $end
+$var reg 1 B WILL_FIRE_RL_testfsm_action_l76c33 $end
+$var reg 1 C WILL_FIRE_RL_testfsm_action_l79c17 $end
+$var reg 1 D WILL_FIRE_RL_testfsm_action_l80c28 $end
+$var reg 1 E WILL_FIRE_RL_testfsm_fsm_start $end
+$var reg 1 F WILL_FIRE_RL_testfsm_restart $end
+$var reg 1 G WILL_FIRE_RL_testfsm_start_reg__dreg_update $end
+$var reg 1 H WILL_FIRE_RL_testfsm_state_every $end
+$var reg 1 I WILL_FIRE_RL_testfsm_state_fired__dreg_update $end
+$var reg 1 J WILL_FIRE_RL_testfsm_state_handle_abort $end
+$var reg 1 K WILL_FIRE___me_check_10 $end
+$var reg 1 L WILL_FIRE___me_check_5 $end
+$var reg 1 M WILL_FIRE___me_check_6 $end
+$var reg 1 N WILL_FIRE___me_check_7 $end
+$var reg 1 O WILL_FIRE___me_check_8 $end
+$var reg 1 P WILL_FIRE___me_check_9 $end
+$var reg 144 Q message_8_BITS_143_TO_0___d75 $end
+$var reg 145 R message___d38 $end
+$var reg 144 S update___d78 $end
+$var reg 145 c message $end
+$var reg 1 d pred $end
+$var reg 8 e prediction $end
+$var reg 1 f testfsm_abort $end
+$var reg 1 g testfsm_start_reg $end
+$var reg 1 h testfsm_start_reg_1 $end
+$var reg 1 i testfsm_start_reg_2 $end
+$var reg 1 j testfsm_start_wire $end
+$var reg 1 k testfsm_state_can_overlap $end
+$var reg 1 l testfsm_state_fired $end
+$var reg 1 m testfsm_state_fired_1 $end
+$var reg 4 n testfsm_state_mkFSMstate $end
+$var reg 1 o testfsm_state_overlap_pw $end
+$var reg 1 p testfsm_state_set_pw $end
+$var reg 144 q update $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -66,54 +83,67 @@ $enddefinitions $end
 0"
 0#
 0$
-1%
+0%
 0&
 0'
 0(
 0)
-1*
-1+
+0*
+0+
 1,
-0-
+1-
 1.
-1/
+0/
 10
 11
-02
-03
-04
-05
-16
-07
-08
-09
-0:
-1;
-1<
-1=
-0>
-1?
-1@
-1A
-1B
-b1010101010101010101010101010101010101010101010101010101010101010 C
-b0 R
-b0 S
-xT
-0U
-0V
-xW
-xX
-1Y
-0Z
-1[
-b0 \
-0]
-1^
-b0 _
-1"
-0%
+12
 13
-06
-x[
-0^
+14
+15
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 6
+07
+b101010101010101010101010101010101010101010101010101010101010101010101010 8
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 9
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 :
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 ;
+b1010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 <
+0=
+0>
+0?
+0@
+0A
+0B
+0C
+0D
+0E
+0F
+1G
+1H
+1I
+0J
+1K
+1L
+1M
+1N
+1O
+1P
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 Q
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 R
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 S
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 c
+0d
+b0 e
+xf
+0g
+0h
+xi
+xj
+1k
+0l
+xm
+b0 n
+0o
+0p
+b101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010 q
+1"
+1=

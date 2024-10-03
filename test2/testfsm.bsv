@@ -1,10 +1,11 @@
 import StmtFSM::*;
 
-import "BDPI" function ActionValue#(UInt#(64)) branch_pred_req;
 import "BDPI" function Action branch_pred_resp(Bit#(8) taken);
-import "BDPI" function ActionValue#(Bit#(160)) branch_update_req();
+import "BDPI" function ActionValue#(Bit#(160)) recieve();
 import "BDPI" function Action set_file_descriptors;
 import "BDPI" function Action debug;
+
+typedef UInt#(64) Address;
 
 typedef struct {
     UInt#(64) ip;
@@ -13,47 +14,76 @@ typedef struct {
     UInt#(8) branch_type;
 } BranchUpdateInfo deriving(Bits, Eq, FShow);
 
+typedef union tagged{
+  BranchUpdateInfo UpdateReq;
+  Address PredictReq;
+} Message deriving(Bits, Eq, FShow);
 
 (* synthesize *)
 module mkTestbench();
 
-    function Bit#(8) predict(UInt#(64) ip);
+    function Bit#(8) predict(Address ip);
       return 8'd1;
     endfunction
 
     function BranchUpdateInfo convertUpdate(Bit#(160) b);
-      UInt#(64) ip = unpack(b[63:0]);
-      UInt#(64) target = unpack(b[127:64]);
-      UInt#(8) taken = unpack(b[135:128]);
-      UInt#(8) branch_type = unpack(b[143:136]);
+      UInt#(64) ip = unpack(b[65:2]);
+      UInt#(64) target = unpack(b[129:66]);
+      UInt#(8) taken = unpack(b[137:130]);
+      UInt#(8) branch_type = unpack(b[145:138]);
       return BranchUpdateInfo{ip: ip, target: target, taken: taken, branch_type: branch_type};
     endfunction
 
+    function Message convertToMessage(Bit#(160) m);
+      UInt#(2) t = unpack(m[1:0]);
+      Message ret;
+      if (t == fromInteger(1)) begin 
+        ret = PredictReq(unpack(m[65:2]));
+      end
+      else  begin
+        ret = UpdateReq(convertUpdate(m));
+      end
+      return ret;
+    endfunction
+
     function Action debugUpdate(BranchUpdateInfo b);
-      $display("IP: %d, target : %d, taken: %d, Type %d:", b.ip, b.target, b.taken, b.branch_type);
+      $display("BSV Update IP: %d, target : %d, taken: %d, Type %d:", b.ip, b.target, b.taken, b.branch_type);
     endfunction
 
-    function Action debugPredictionReq(UInt#(64) ip);
-      $display("IP: %d", ip);
+    function Action debugPredictionReq(Address ip);
+      $display("BSV Predict IP: %d", ip);
     endfunction
 
-    Reg#(UInt#(64)) branch <- mkReg(0);
+    function Bool isPred(Message m);
+      Bool x = False;
+      case(m) matches
+        tagged PredictReq .pr : x = True;
+      endcase
+      return x;
+    endfunction
+
+    Reg#(BranchUpdateInfo) update <- mkReg(?);
     Reg#(Bit#(8)) prediction <- mkReg(0);
-    Reg#(Bit#(160)) update <- mkReg(0);
+    Reg#(Message) message <- mkReg(?);
+    Reg#(Bool) pred <- mkReg(?);
     Stmt stmt = seq 
         set_file_descriptors;
-        par
             while(True) seq
-              action let a <- branch_pred_req; branch <= a; endaction
-              action prediction <= predict(branch); endaction
-              branch_pred_resp(prediction);
+              action let a <- recieve; message <= convertToMessage(a); endaction
+              if (isPred(message)) seq
+                action prediction <= predict(message.PredictReq); endaction
+                debugPredictionReq(message.PredictReq);
+                branch_pred_resp(prediction);  
+              endseq
+              if (!isPred(message)) seq
+                action update <= message.UpdateReq; endaction
+                debugUpdate(update);
+              endseq
             endseq
-
             /*while(True) seq
               action let a <- branch_update_req; update <= a; endaction  
               debugUpdate(convertUpdate(update));
             endseq*/
-        endpar
         //my_display(b);
     endseq;
 

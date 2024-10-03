@@ -5,10 +5,9 @@
 #include "types.h"
 
 
-int predict_read;
-int predict_write;
+int pipe_read;
+int pipe_write;
 int update_read;
-
 
 typedef struct {
   __uint64_t ip;
@@ -29,54 +28,59 @@ __uint64_t to_long(const unsigned char* charArray){
 void set_file_descriptors(){
   const char* fd_in = getenv(ENV_FIFO_IN);
   const char* fd_out = getenv(ENV_FIFO_OUT);
-  const char* fd_update = getenv(ENV_FIFO_UPDATE);
-  predict_read = atoi(fd_in);
-  predict_write = atoi(fd_out);
-  update_read = atoi(fd_update);
+  pipe_read = atoi(fd_in);
+  pipe_write = atoi(fd_out);
 }
 
 
-__uint64_t branch_pred_req(){
-  
-  unsigned char buff[8];
-  int num = 0;
-  __uint64_t ip = 0;
-  sleep(1);
-  if((num = read(predict_read, buff, 8)) > 0){
-    ip = to_long(buff);
-    //printf("Bluespec IP: %ld\n", ip);
-  }
-  return ip;
+void branch_pred_req(unsigned int* res, unsigned char* buff){
+  __uint64_t ip = to_long(buff);
+  res[0] = res[0] | (ip << 2);
+  res[1] = ip & 0x3FFFFFFFD0000000;
+  res[2] = ip & 0xD000000000000000 >> 30;
 }
 
-void branch_update_req(unsigned int* res){
+void branch_update_req(unsigned int* res, unsigned char* buff){
   // Careful about padding
-  unsigned char buff[18];
   int num = 0;
   
   BranchUpdateInfo ret;
-  if((num = read(update_read, buff, 18)) > 0) {
-      // Decode
-      ret.ip = to_long(buff);
-      ret.target = to_long(&buff[8]);
-      ret.taken = buff[16] - '0';
-      ret.branch_type = buff[17] - '0';
-      
-      // For Bluespec
-      res[0] = ret.ip & 0xFFFFFFFF;
-      res[1] = (ret.ip & 0xFFFFFFFF00000000) >> 32;
-      res[2] = ret.target & 0xFFFFFFFF;
-      res[3] = (ret.target & 0xFFFFFFFF00000000) >> 32;
-      res[4] = (ret.branch_type << 8) | ret.taken;
-  }else{
-    perror("Receiving update");
-    exit(1);
+  
+  // Decode
+  ret.ip = to_long(buff);
+  ret.target = to_long(&buff[8]);
+  ret.taken = buff[16] - '0';
+  ret.branch_type = buff[17] - '0';      
+  // For Bluespec
+  res[0] = res[0] | (ret.ip & 0xFFFFFFFF) << 2; // 30
+  res[1] = (ret.ip & 0x3FFFFFFFD0000000) >> 32;
+  res[2] = ((ret.ip & 0xD000000000000000) >> 30) | ((ret.target & 0xFFFFFFFF) << 2);
+  res[3] = (ret.target & 0x3FFFFFFFD0000000) >> 32;
+  res[4] = ((ret.target & 0xD000000000000000) >> 30) | (ret.branch_type << 10) | (ret.taken << 2);
+}
+
+
+// 2 bits
+void recieve(unsigned int* res){
+  unsigned char buff[MSG_LENGTH];
+  int num = 0;
+  sleep(1);
+  if((num = read(pipe_read, buff, MSG_LENGTH)) > 0){
+    if(buff[0] == PREDICT_REQ){
+      res[0] = PREDICT_REQ;  
+      branch_pred_req(res, &buff[1]);
+    }else if(buff[0] == UPDATE_REQ){
+      res[0] = UPDATE_REQ;
+      branch_update_req(res, &buff[1]);
+    }else{
+      fprintf(stderr, "Recieving invalid data");
+    }
   }
 }
 
 void branch_pred_resp(char taken){
   taken = taken + '0'; // Char form
-  write(predict_write, &taken, 1);
+  write(pipe_write, &taken, 1);
 }
 
 void debug(){
