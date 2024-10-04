@@ -2,7 +2,7 @@
 # Directory containing the Bluespec Training distribution directory
 
 TOPDIR ?= ..
-TOPFILE ?= in
+TOPFILE ?= mypred
 INCLUDE = $(TOPDIR)/include
 C_FLAGS = -Wall -I $(INCLUDE)
 
@@ -28,7 +28,7 @@ build_dir:
 .PHONY: compile
 compile: build_dir
 	@echo Compiling for Bluesim ...
-	gcc -o $(BUILD_DIR)/$(EXE) $(TOPDIR)/$(TOPFILE).c $(C_FLAGS)
+	g++ -o $(BUILD_DIR)/$(EXE) $(TOPDIR)/$(TOPFILE).cc $(C_FLAGS)
 
 
 

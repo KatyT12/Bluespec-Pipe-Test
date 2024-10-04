@@ -20,8 +20,8 @@ typedef union tagged{
 } Message deriving(Bits, Eq, FShow);
 
 (* synthesize *)
-module mkTestbench();
-
+module mkTestbench(Empty);
+    
     function Bit#(8) predict(Address ip);
       return 8'd1;
     endfunction
@@ -78,7 +78,7 @@ module mkTestbench();
               endseq
               if (!isPred(message)) seq
                 action update <= message.UpdateReq; endaction
-                if(debug )debugUpdate(update);
+                if(debug) debugUpdate(update);
               endseq
             endseq
             /*while(True) seq
@@ -88,10 +88,6 @@ module mkTestbench();
         //my_display(b);
     endseq;
 
-FSM testfsm <- mkFSM(stmt);
-
-rule init;
-   testfsm.start;
-endrule
+  mkAutoFSM(stmt);
 
 endmodule

@@ -1,4 +1,4 @@
 Build/build
-test2/Build/build_bsim
+src/Build/build_bsim
 .vscode
 .git

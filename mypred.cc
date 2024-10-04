@@ -8,7 +8,7 @@
 #include "ooo_cpu.h"
 #include "types.h"
 
-#define SCRIPT_LOCATION "/home/katy/C++/pipe/test2/Build/script.sh"
+#define SCRIPT_LOCATION "/home/katy/C++/pipe/src/Build/script.sh"
 
 
 void init_bsim();
