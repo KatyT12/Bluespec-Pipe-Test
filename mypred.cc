@@ -10,7 +10,6 @@
 
 #define SCRIPT_LOCATION "/home/katy/C++/pipe/src/Build/script.sh"
 
-
 void init_bsim();
 
 namespace
@@ -18,7 +17,6 @@ namespace
     int req_pipe[2];
     int resp_pipe[2];
 } // namespace
-
 
 // Only for numerical types
 template<typename T>
@@ -43,21 +41,18 @@ uint8_t O3_CPU::predict_branch(uint64_t ip)
    buff[0] = PREDICT_REQ;
    contiguous_buff<uint64_t>(ip, buff, MSG_LENGTH, 1);
    
-   
    std::cout << "Predict " << ip << std::endl;
 
    if(write(req_pipe[1], buff, MSG_LENGTH) == -1){
      perror("Requesting prediction");
    }
-  
-    
+      
    if(read(resp_pipe[0], &out, 1) > 0){
      return out - '0';
    }else{
      perror("Recieving prediction");
    }
-   return 1;
-   
+   return 1; 
 }
 
 
@@ -94,8 +89,7 @@ void init_bsim(){
     char run[] = SCRIPT_LOCATION;
     char* args[] = {run, NULL};
     char pred_in_arg[20], pred_out_arg[20];
-
-    
+   
     sprintf(pred_in_arg, "%s=%d", ENV_FIFO_IN, req_pipe[0]);
     sprintf(pred_out_arg, "%s=%d", ENV_FIFO_OUT, resp_pipe[1]);
     char* env[] = {pred_in_arg, pred_out_arg, NULL};

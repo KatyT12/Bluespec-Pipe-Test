@@ -72,12 +72,12 @@ module mkTestbench(Empty);
             while(True) seq
               action let a <- recieve; message <= convertToMessage(a); endaction
               if (isPred(message)) seq
-                action prediction <= predict(message.PredictReq); endaction
+                prediction <= predict(message.PredictReq);
                 if(debug) debugPredictionReq(message.PredictReq);
                 branch_pred_resp(prediction);  
               endseq
               if (!isPred(message)) seq
-                action update <= message.UpdateReq; endaction
+                update <= message.UpdateReq;
                 if(debug) debugUpdate(update);
               endseq
             endseq
@@ -89,5 +89,4 @@ module mkTestbench(Empty);
     endseq;
 
   mkAutoFSM(stmt);
-
 endmodule
